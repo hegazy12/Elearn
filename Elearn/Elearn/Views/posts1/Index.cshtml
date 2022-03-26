@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Elearn.Models.post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idqu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idstu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.post1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idexame)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idqu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idstu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.post1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idexame)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

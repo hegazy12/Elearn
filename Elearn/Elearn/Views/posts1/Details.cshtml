@@ -1,0 +1,50 @@
+﻿@model Elearn.Models.post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idqu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idqu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idstu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idstu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.post1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.post1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idexame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idexame)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

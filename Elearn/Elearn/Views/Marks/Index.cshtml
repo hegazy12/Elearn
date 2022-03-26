@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Discussion.css" rel="stylesheet" />
+
+@{
+    foreach (var item in ViewBag.markinexam)
+    {
+        <div class="row postdiv">
+            <div name="id" class=" col-sm-2 col-xs-2">
+                <h5>
+                    @item.u.id
+                </h5>
+            </div>
+            <div name="name" class="col-sm-4 col-xs-4">
+                <a href="@Url.Action("Index","mistak",new {id=item.u.id,exame=ViewBag.idexam})">
+                <h5>
+                    @{var x = item.u.Fname + " " + item.u.Lname;}
+                    @x
+                </h5>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <h5>
+                    @item.u.UserName
+                </h5>
+            </div>
+            <div name="mark" class="col-sm-2 col-xs-2">
+                <h5>
+                    @item.m.mark
+                </h5>
+            </div>
+        </div>
+    }
+}
+
+@{
+    foreach (var item in ViewBag.NotSolve)
+    {
+        <div class="row zeromark">
+            <div name="id" class=" col-sm-2 col-xs-2">
+                <h5>
+                    @item.id
+                </h5>
+            </div>
+            <div name="name" class="col-sm-4 col-xs-4">
+                <h5>
+                    @{var x = item.Fname + " " + item.Lname;}
+                    @x
+                </h5>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <h5>
+                    @item.UserName
+                </h5>
+            </div>
+            <div name="mark" class="col-sm-2 col-xs-2">
+                <h5>
+                    0
+                </h5>
+            </div>
+        </div>
+    }
+}

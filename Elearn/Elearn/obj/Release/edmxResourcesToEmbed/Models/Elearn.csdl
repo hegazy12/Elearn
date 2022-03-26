@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ElearnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idstu" Type="Int32" />
+    <Property Name="comment1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="idpost" Type="Int32" />
+    <NavigationProperty Name="post" Relationship="Self.FK_comment_post" FromRole="comment" ToRole="post" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_comment_Ueaser" FromRole="comment" ToRole="Ueaser" />
+  </EntityType>
+  <EntityType Name="exame">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="photo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="id_emp" Type="Int32" />
+    <Property Name="id_teacher" Type="Int32" />
+    <Property Name="idgroup" Type="Int32" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_exame_Groups" FromRole="exame" ToRole="Groups" />
+    <NavigationProperty Name="markexames" Relationship="Self.FK_markexame_exame" FromRole="exame" ToRole="markexame" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK_Notes_exame" FromRole="exame" ToRole="Notes" />
+    <NavigationProperty Name="posts" Relationship="Self.FK_post_exame" FromRole="exame" ToRole="post" />
+    <NavigationProperty Name="qus" Relationship="Self.FK_qu_exame" FromRole="exame" ToRole="qu" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="idteacher" Type="Int32" />
+    <Property Name="idemp" Type="Int32" />
+    <Property Name="photo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="exames" Relationship="Self.FK_exame_Groups" FromRole="Groups" ToRole="exame" />
+    <NavigationProperty Name="UserInGroups" Relationship="Self.FK_UserInGroup_Groups" FromRole="Groups" ToRole="UserInGroup" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iduser" Type="Int32" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="Int32" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_Login_Ueaser" FromRole="Login" ToRole="Ueaser" />
+  </EntityType>
+  <EntityType Name="markexame">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idexame" Type="Int32" />
+    <Property Name="mark" Type="Int32" />
+    <Property Name="idstu" Type="Int32" />
+    <Property Name="fullmark" Type="Int32" />
+    <NavigationProperty Name="exame" Relationship="Self.FK_markexame_exame" FromRole="markexame" ToRole="exame" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_markexame_Ueaser" FromRole="markexame" ToRole="Ueaser" />
+  </EntityType>
+  <EntityType Name="Note">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idstu" Type="Int32" />
+    <Property Name="idqu" Type="Int32" />
+    <Property Name="idexam" Type="Int32" />
+    <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="exame" Relationship="Self.FK_Notes_exame" FromRole="Notes" ToRole="exame" />
+    <NavigationProperty Name="qu" Relationship="Self.FK_Notes_qu" FromRole="Notes" ToRole="qu" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_Notes_Ueaser" FromRole="Notes" ToRole="Ueaser" />
+  </EntityType>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idqu" Type="Int32" />
+    <Property Name="idstu" Type="Int32" />
+    <Property Name="post1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="idexame" Type="Int32" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_post" FromRole="post" ToRole="comment" />
+    <NavigationProperty Name="exame" Relationship="Self.FK_post_exame" FromRole="post" ToRole="exame" />
+    <NavigationProperty Name="qu" Relationship="Self.FK_post_qu" FromRole="post" ToRole="qu" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_post_Ueaser" FromRole="post" ToRole="Ueaser" />
+  </EntityType>
+  <EntityType Name="qu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Qu1" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="An1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="An2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="An3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="An4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QreAn" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reason_an" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="id_emp" Type="Int32" />
+    <Property Name="idexame" Type="Int32" />
+    <NavigationProperty Name="exame" Relationship="Self.FK_qu_exame" FromRole="qu" ToRole="exame" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK_Notes_qu" FromRole="qu" ToRole="Notes" />
+    <NavigationProperty Name="posts" Relationship="Self.FK_post_qu" FromRole="qu" ToRole="post" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Ueaser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="actv" Type="Int32" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_comment_Ueaser" FromRole="Ueaser" ToRole="comment" />
+    <NavigationProperty Name="Logins" Relationship="Self.FK_Login_Ueaser" FromRole="Ueaser" ToRole="Login" />
+    <NavigationProperty Name="markexames" Relationship="Self.FK_markexame_Ueaser" FromRole="Ueaser" ToRole="markexame" />
+    <NavigationProperty Name="Notes" Relationship="Self.FK_Notes_Ueaser" FromRole="Ueaser" ToRole="Notes" />
+    <NavigationProperty Name="posts" Relationship="Self.FK_post_Ueaser" FromRole="Ueaser" ToRole="post" />
+    <NavigationProperty Name="UserInGroups" Relationship="Self.FK_UserInGroup_Ueaser" FromRole="Ueaser" ToRole="UserInGroup" />
+  </EntityType>
+  <EntityType Name="UserInGroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iduser" Type="Int32" />
+    <Property Name="idgroup" Type="Int32" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_UserInGroup_Groups" FromRole="UserInGroup" ToRole="Groups" />
+    <NavigationProperty Name="Ueaser" Relationship="Self.FK_UserInGroup_Ueaser" FromRole="UserInGroup" ToRole="Ueaser" />
+  </EntityType>
+  <Association Name="FK_comment_post">
+    <End Role="post" Type="Self.post" Multiplicity="0..1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idpost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comment_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="idstu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exame_Groups">
+    <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="exame" Type="Self.exame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="exame">
+        <PropertyRef Name="idgroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_markexame_exame">
+    <End Role="exame" Type="Self.exame" Multiplicity="0..1" />
+    <End Role="markexame" Type="Self.markexame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exame">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="markexame">
+        <PropertyRef Name="idexame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_exame">
+    <End Role="exame" Type="Self.exame" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exame">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idexam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_post_exame">
+    <End Role="exame" Type="Self.exame" Multiplicity="0..1" />
+    <End Role="post" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exame">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="idexame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_qu_exame">
+    <End Role="exame" Type="Self.exame" Multiplicity="0..1" />
+    <End Role="qu" Type="Self.qu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exame">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="qu">
+        <PropertyRef Name="idexame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInGroup_Groups">
+    <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="UserInGroup" Type="Self.UserInGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserInGroup">
+        <PropertyRef Name="idgroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_markexame_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="markexame" Type="Self.markexame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="markexame">
+        <PropertyRef Name="idstu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_qu">
+    <End Role="qu" Type="Self.qu" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="qu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idqu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="idstu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_post_qu">
+    <End Role="qu" Type="Self.qu" Multiplicity="0..1" />
+    <End Role="post" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="qu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="idqu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_post_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="post" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="idstu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInGroup_Ueaser">
+    <End Role="Ueaser" Type="Self.Ueaser" Multiplicity="0..1" />
+    <End Role="UserInGroup" Type="Self.UserInGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ueaser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserInGroup">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ElearnEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="comments" EntityType="Self.comment" />
+    <EntitySet Name="exames" EntityType="Self.exame" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="markexames" EntityType="Self.markexame" />
+    <EntitySet Name="Notes" EntityType="Self.Note" />
+    <EntitySet Name="posts" EntityType="Self.post" />
+    <EntitySet Name="qus" EntityType="Self.qu" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Ueasers" EntityType="Self.Ueaser" />
+    <EntitySet Name="UserInGroups" EntityType="Self.UserInGroup" />
+    <AssociationSet Name="FK_comment_post" Association="Self.FK_comment_post">
+      <End Role="post" EntitySet="posts" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comment_Ueaser" Association="Self.FK_comment_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="comment" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exame_Groups" Association="Self.FK_exame_Groups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="exame" EntitySet="exames" />
+    </AssociationSet>
+    <AssociationSet Name="FK_markexame_exame" Association="Self.FK_markexame_exame">
+      <End Role="exame" EntitySet="exames" />
+      <End Role="markexame" EntitySet="markexames" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_exame" Association="Self.FK_Notes_exame">
+      <End Role="exame" EntitySet="exames" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_post_exame" Association="Self.FK_post_exame">
+      <End Role="exame" EntitySet="exames" />
+      <End Role="post" EntitySet="posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_qu_exame" Association="Self.FK_qu_exame">
+      <End Role="exame" EntitySet="exames" />
+      <End Role="qu" EntitySet="qus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInGroup_Groups" Association="Self.FK_UserInGroup_Groups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="UserInGroup" EntitySet="UserInGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Ueaser" Association="Self.FK_Login_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_markexame_Ueaser" Association="Self.FK_markexame_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="markexame" EntitySet="markexames" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_qu" Association="Self.FK_Notes_qu">
+      <End Role="qu" EntitySet="qus" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_Ueaser" Association="Self.FK_Notes_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_post_qu" Association="Self.FK_post_qu">
+      <End Role="qu" EntitySet="qus" />
+      <End Role="post" EntitySet="posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_post_Ueaser" Association="Self.FK_post_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="post" EntitySet="posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInGroup_Ueaser" Association="Self.FK_UserInGroup_Ueaser">
+      <End Role="Ueaser" EntitySet="Ueasers" />
+      <End Role="UserInGroup" EntitySet="UserInGroups" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

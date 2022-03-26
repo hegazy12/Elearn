@@ -1,0 +1,41 @@
+﻿@model IList<Elearn.Models.mistak>
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Exama.css" rel="stylesheet" />
+<link href="~/Content/mist.css" rel="stylesheet" />
+@{
+    foreach (var item in Model)
+    {
+        <div class="row Qu">
+            <div class="col-sm-12 col-xs-12">
+                <h5 class="f2">
+                    @item.qu.Qu1
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 an">
+                <samp class="an" style="margin-left:10px;">1- @item.qu.An1</samp>
+            </div>
+            <div class="col-sm-6 col-xs-12 an">
+                <samp class="an" style="margin-left:10px;">2- @item.qu.An2</samp>
+            </div>
+            <div class="col-sm-6 col-xs-12 an">
+                <samp class="an" style="margin-left:10px;">3- @item.qu.An3</samp>
+            </div>
+            <div class="col-sm-6 col-xs-12 an">
+                <samp class="an" style="margin-left:10px;">4- @item.qu.An4</samp>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 mistake">
+                <samp class="f2" style="margin-left:10px">@item.Nummistak</samp>
+            </div>
+            <div class="col-sm-6 col-xs-12 right">
+                <samp class="f2" style="margin-left:10px">@item.qu.QreAn</samp>
+            </div>
+        </div>
+    }
+}
